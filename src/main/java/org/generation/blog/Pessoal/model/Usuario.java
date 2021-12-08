@@ -43,8 +43,13 @@ public class Usuario {
 	@JsonIgnoreProperties({"criador"})
 	private List<Postagem> minhasPostagens = new ArrayList<>();
 	
+	private String tipo;
+	
 	private String foto;
 	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List <Postagem> postagem = new ArrayList<>();
  
 	public String getFoto() {
 		return foto;
@@ -52,6 +57,22 @@ public class Usuario {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
 
 	public List<Postagem> getMinhasPostagens() {
